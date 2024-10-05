@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import LayoutPage from "@/components/layout/layout-page";
+import QueryProvider from "@/provider/query-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,7 +26,9 @@ export default function RootLayout({
       <body
         className={`${poppins.className} container mx-auto min-h-screen bg-[#fcfbfa] antialiased`}
       >
-        <LayoutPage>{children}</LayoutPage>
+        <QueryProvider>
+          <LayoutPage>{children}</LayoutPage>
+        </QueryProvider>
       </body>
     </html>
   );
