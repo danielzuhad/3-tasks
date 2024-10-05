@@ -10,19 +10,30 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const ProductList = () => {
-  const { data, isLoading, isFetchingNextPage, isError, fetchNextPage } =
-    useProducts();
-  const { ref, inView } = useInView();
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+  } = useProducts();
+  const { ref, inView } = useInView({
+    rootMargin: "200px",
+    triggerOnce: false,
+  });
+
+  console.log(inView);
 
   useEffect(() => {
     console.log("rendered");
-    if (inView) {
+    if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [fetchNextPage, inView]);
+  }, [fetchNextPage, inView, hasNextPage]);
 
   return (
-    <ScrollArea className="flex-1 overflow-y-auto overflow-x-hidden lg:h-[82vh]">
+    <ScrollArea className="flex-1 overflow-y-auto overflow-x-hidden pb-2 lg:h-[82vh]">
       <LayoutProducts>
         {isError && <div>Error</div>}
 
@@ -39,10 +50,9 @@ const ProductList = () => {
             )}
       </LayoutProducts>
 
-      <div
-        ref={ref}
-        className="grid w-full grid-cols-2 place-items-center gap-5 sm:grid-cols-3 sm:gap-14 md:grid-cols-4 md:gap-14 lg:gap-10 xl:gap-16 2xl:grid-cols-5 2xl:gap-12"
-      >
+      <div ref={ref} className="h-10 w-full" />
+
+      <div className="grid h-4 w-full grid-cols-2 place-items-center gap-5 sm:grid-cols-3 sm:gap-14 md:grid-cols-4 md:gap-14 lg:gap-10 xl:gap-16 2xl:grid-cols-5 2xl:gap-12">
         {isFetchingNextPage &&
           Array.from({ length: 5 }).map((_, i) => (
             <Card key={i} className="h-[250px] w-full max-md:max-w-[200px]">

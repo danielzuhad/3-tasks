@@ -25,6 +25,7 @@ const useProducts = () => {
     isError,
     fetchNextPage,
     isFetchingNextPage,
+    hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["products"],
     queryFn: fetchProducts,
@@ -38,6 +39,7 @@ const useProducts = () => {
     data,
     isLoading,
     isFetching,
+    hasNextPage,
     isError,
     fetchNextPage,
     isFetchingNextPage,
