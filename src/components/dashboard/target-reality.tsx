@@ -51,7 +51,7 @@ const TargetReality = () => {
           </BarChart>
         </ChartContainer>
 
-        <CardFooter className="flex w-full flex-col items-start gap-y-1 px-2 pb-0 pr-28">
+        <CardFooter className="flex w-full flex-col items-start gap-y-1 px-2 pb-0 sm:pr-28">
           {legendChartTarget.map((item, index) => (
             <LegendComponent key={index} data={item} />
           ))}

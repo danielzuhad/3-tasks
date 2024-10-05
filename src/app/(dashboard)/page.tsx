@@ -11,7 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function Dashboard() {
   return (
-    <ScrollArea className="flex-1 overflow-y-auto overflow-x-hidden lg:max-h-[82vh]">
+    <ScrollArea className="flex-1 overflow-y-auto overflow-x-hidden md:max-lg:mt-16 lg:max-h-[82vh]">
       <LayoutDashboard>
         <TodaySales />
         <Visitors />

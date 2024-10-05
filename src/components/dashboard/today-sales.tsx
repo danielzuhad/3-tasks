@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 const TodaySales = () => {
   return (
-    <CardLayout>
+    <CardLayout className="h-full">
       <CardHeader className="flex flex-row items-center justify-between">
         <div className="space-y-1.5">
           <CardTitle>Today&apos;s Sales</CardTitle>
@@ -29,7 +29,7 @@ const TodaySales = () => {
         </Button>
       </CardHeader>
 
-      <CardContent className="grid h-full grid-cols-1 gap-[20px] pt-5 sm:grid-cols-2 lg:gap-x-[20px] lg:pt-5 xl:grid-cols-4 xl:gap-x-3 xl:pt-6 2xl:grid-cols-4 2xl:gap-x-6 2xl:pt-8 3xl:gap-x-[30px] 3xl:pt-10">
+      <CardContent className="grid h-full grid-cols-1 pt-5 max-xl:pb-24 sm:gap-5 md:grid-cols-2 lg:gap-[20px] lg:pt-5 xl:grid-cols-4 xl:gap-3 xl:pt-6 2xl:grid-cols-4 2xl:gap-6 2xl:pt-8 3xl:gap-[30px] 3xl:pt-10">
         {dataTodaySales.map((item, index) => (
           <Box key={index} data={item} />
         ))}
