@@ -1,5 +1,7 @@
-Dashboard (/)
+https://3-tasks.vercel.app/products
+![image](https://github.com/user-attachments/assets/569631e0-dd21-477e-bc20-ad8592e67d2a)
 
+Dashboard (/)
 - menggunakan material ui dan shadcn (rechart react) untuk berbagai chart
 
 Products (/products)
