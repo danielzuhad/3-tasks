@@ -9,18 +9,10 @@ import {
   ChartTooltipContent,
 } from "../ui/chart";
 import CardLayout from "./layout/card-layout";
+import { chartDataTarget, legendChartTarget } from "./utils/constants";
+import { cn } from "@/lib/utils";
 
 const TargetReality = () => {
-  const chartData = [
-    { month: "January", realitySales: 186, targetSales: 80 },
-    { month: "February", realitySales: 305, targetSales: 200 },
-    { month: "March", realitySales: 237, targetSales: 120 },
-    { month: "April", realitySales: 73, targetSales: 190 },
-    { month: "May", realitySales: 209, targetSales: 130 },
-    { month: "June", realitySales: 214, targetSales: 140 },
-    { month: "July", realitySales: 214, targetSales: 140 },
-  ];
-
   const chartConfig = {
     realitySales: {
       label: "Reality Sales",
@@ -33,14 +25,14 @@ const TargetReality = () => {
   } satisfies ChartConfig;
 
   return (
-    <CardLayout variant={"bottom"} className="h-full max-xl:max-w-[500px]">
+    <CardLayout variant={"bottom"}>
       <CardHeader>
         <CardTitle>Target Reality</CardTitle>
       </CardHeader>
 
-      <CardContent className="mt-3 px-0 pb-2 xl:mt-4 xl:pb-[18px] 2xl:mt-5 2xl:pb-[22px] 3xl:mt-[25px] 3xl:pb-7">
-        <ChartContainer config={chartConfig} className="">
-          <BarChart accessibilityLayer data={chartData}>
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <BarChart accessibilityLayer data={chartDataTarget}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="day"
@@ -59,10 +51,47 @@ const TargetReality = () => {
           </BarChart>
         </ChartContainer>
 
-        <CardFooter className="px-2">test</CardFooter>
+        <CardFooter className="flex w-full flex-col items-start gap-y-1 px-2 pb-0 pr-28">
+          {legendChartTarget.map((item, index) => (
+            <LegendComponent key={index} data={item} />
+          ))}
+        </CardFooter>
       </CardContent>
     </CardLayout>
   );
 };
 
 export default TargetReality;
+
+const LegendComponent = ({ data }: { data: (typeof legendChartTarget)[0] }) => {
+  return (
+    <div className="flex h-9 w-full items-center justify-between">
+      <div className="flex items-center gap-2">
+        <div
+          className={cn(
+            "h-9 w-9 rounded-md",
+            data.label === "Target Sales" && "bg-[#E2FFF3]",
+            data.label === "Reality Sales" && "bg-[#FFF4DE]",
+          )}
+        />
+        <div>
+          <p className="text-xs font-semibold leading-4 text-foreground">
+            {data.label}
+          </p>
+          <p className="text-[10px] leading-4 text-muted-foreground">
+            {data.description}
+          </p>
+        </div>
+      </div>
+      <p
+        className={cn(
+          "text-sm font-medium",
+          data.label === "Target Sales" && "text-[#27AE60]",
+          data.label === "Reality Sales" && "text-[#FFA800]",
+        )}
+      >
+        8.823
+      </p>
+    </div>
+  );
+};

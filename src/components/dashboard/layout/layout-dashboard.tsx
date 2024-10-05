@@ -9,7 +9,7 @@ const layoutVariants = cva(
       variant: {
         top: "3xl:gap-[31px] 2xl:gap-[25px] xl:gap-[21px]  xl:grid-cols-[540px_1fr] 2xl:grid-cols-[702px_1fr] 3xl:grid-cols-[877px_1fr]",
         bottom:
-          "3xl:grid-cols-[645px_1fr_1fr] 2xl:grid-cols-[516px_1fr_1fr] 3xl:grid-cols-[645px_1fr_1fr] lg:gap-[16px] xl:gap-[20px] 2xl:gap-[24px] 3xl:gap-[31px] ",
+          "3xl:grid-cols-[645px_1fr_1fr] xl:grid-cols-3 lg:gap-[16px] xl:gap-[20px] 2xl:gap-[24px] 3xl:gap-[31px] mt-3 pb-5 lg:mt-4 xl:mt-5 2xl:mt-6 3xl:mt-8",
       },
     },
 

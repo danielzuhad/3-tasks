@@ -13,17 +13,16 @@ const CardProduct = ({ data }: CardProductProps) => {
   return (
     <Card className="h-full w-full max-md:max-w-[200px]">
       <CardHeader className="flex w-full items-center justify-center overflow-hidden p-0">
-        {/* Pastikan gambar ada dan diakses dengan benar */}
         {fixedImages && fixedImages.length > 0 ? (
           <img
             width={100}
             height={100}
-            src={fixedImages[0]}
+            src={fixedImages[0] || "https://via.placeholder.com/100"}
             alt={data.title}
             className="w-full rounded-t-lg object-contain"
           />
         ) : (
-          <div>No Image Available</div> // Tampilan jika gambar tidak ada
+          <div>No Image Available</div>
         )}
       </CardHeader>
 

@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Progress } from "../ui/progress";
 import { ScrollArea } from "../ui/scroll-area";
@@ -11,17 +12,18 @@ import {
 } from "../ui/table";
 import CardLayout from "./layout/card-layout";
 import { dataTopProducts } from "./utils/constants";
+import { badgeStyle, getClassName, getColor } from "./utils/conditional-color";
 
 const TopProducts = () => {
   return (
-    <CardLayout className="w-full max-xl:max-w-[500px]">
+    <CardLayout>
       <CardHeader>
         <CardTitle className="xl:leading-7 3xl:leading-8">
           Top Products
         </CardTitle>
 
-        <CardContent className="w-full px-0 xl:mt-2 2xl:mt-3 3xl:mt-[18px]">
-          <ScrollArea className="h-[245px] w-full">
+        <CardContent className="w-full px-0 lg:pb-0 xl:mt-2 2xl:mt-3">
+          <ScrollArea className="h-[243px] w-full">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -34,13 +36,23 @@ const TopProducts = () => {
 
               <TableBody>
                 {dataTopProducts.map((item, index) => (
-                  <TableRow key={index}>
+                  <TableRow key={index} className="">
                     <TableCell className="font-medium">{index + 1}</TableCell>
                     <TableCell className="font-medium">{item.name}</TableCell>
                     <TableCell>
-                      <Progress value={item.popularity} />
+                      <Progress
+                        value={item.popularity}
+                        className={cn(getClassName(item))}
+                        color={getColor(item)}
+                      />
                     </TableCell>
-                    <TableCell className="text-right">{item.sales}</TableCell>
+                    <TableCell className="flex justify-end text-right">
+                      <p
+                        className={`rounded-md border-2 px-2 ${badgeStyle(item)}`}
+                      >
+                        {item.sales}
+                      </p>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

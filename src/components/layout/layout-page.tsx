@@ -12,8 +12,10 @@ const LayoutPage = ({ children }: LayoutPageProps) => {
       <NavbarSide className="max-lg:hidden" />
       <div className="flex w-full flex-col">
         <NavbarTop />
-        <div className="mx-auto flex h-full w-full items-center justify-center">
-          {children}
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="flex h-full w-full overflow-hidden p-5 max-md:mt-36">
+            {children}
+          </div>
         </div>
       </div>
     </div>

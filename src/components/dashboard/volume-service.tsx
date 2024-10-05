@@ -11,29 +11,22 @@ import {
   ChartTooltipContent,
 } from "../ui/chart";
 import CardLayout from "./layout/card-layout";
+import { chartDataVolumeService } from "./utils/constants";
 
 const VolumeSercive = () => {
-  const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-  ];
   const chartConfig = {
-    desktop: {
-      label: "Desktop",
-      color: "hsl(var(--chart-1))",
+    volume: {
+      label: "Volume",
+      color: "#0095FF",
     },
-    mobile: {
-      label: "Mobile",
-      color: "hsl(var(--chart-2))",
+    services: {
+      label: "Services",
+      color: "#00E096",
     },
   } satisfies ChartConfig;
 
   return (
-    <CardLayout className="w-full max-xl:max-w-[500px]">
+    <CardLayout className="h-full w-full max-xl:max-w-[500px]">
       <CardHeader>
         <CardTitle className="xl:leading-7 3xl:leading-8">
           Volume Service
@@ -44,20 +37,24 @@ const VolumeSercive = () => {
             className="flex h-[200px] w-full justify-center"
             config={chartConfig}
           >
-            <BarChart barSize={12} accessibilityLayer data={chartData}>
+            <BarChart
+              barSize={12}
+              accessibilityLayer
+              data={chartDataVolumeService}
+            >
               <CartesianGrid vertical={false} />
               <ChartTooltip content={<ChartTooltipContent hideLabel />} />
               <ChartLegend content={<ChartLegendContent />} />
               <Bar
-                dataKey="desktop"
+                dataKey="volume"
                 stackId="a"
-                fill="var(--color-desktop)"
+                fill="#0095FF"
                 radius={[0, 0, 4, 4]}
               />
               <Bar
-                dataKey="mobile"
+                dataKey="services"
                 stackId="a"
-                fill="var(--color-mobile)"
+                fill="#00E096"
                 radius={[4, 4, 0, 0]}
               />
             </BarChart>

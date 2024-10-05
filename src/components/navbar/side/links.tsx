@@ -21,7 +21,7 @@ const Links = () => {
       icon: (
         <ShoppingCart
           size={21}
-          color={pathname === "/product" ? "white" : "#737791"}
+          color={pathname === "/products" ? "white" : "#737791"}
         />
       ),
     },

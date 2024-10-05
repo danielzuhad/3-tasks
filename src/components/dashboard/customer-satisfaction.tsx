@@ -1,25 +1,17 @@
 "use client";
 
-import { Area, AreaChart, CartesianGrid } from "recharts";
-import { CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Area, AreaChart, CartesianGrid, Legend } from "recharts";
+import { CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import {
   ChartConfig,
   ChartContainer,
-  ChartLegend,
   ChartTooltip,
   ChartTooltipContent,
 } from "../ui/chart";
 import CardLayout from "./layout/card-layout";
+import { chartDataCustomer } from "./utils/constants";
 
 const CustomerSatisfaction = () => {
-  const chartData = [
-    { month: "January", lastMonth: 186, thisMonth: 80 },
-    { month: "February", lastMonth: 305, thisMonth: 200 },
-    { month: "March", lastMonth: 237, thisMonth: 120 },
-    { month: "April", lastMonth: 73, thisMonth: 190 },
-    { month: "May", lastMonth: 209, thisMonth: 130 },
-    { month: "June", lastMonth: 214, thisMonth: 140 },
-  ];
   const chartConfig = {
     lastMonth: {
       label: "Last Month",
@@ -32,25 +24,22 @@ const CustomerSatisfaction = () => {
   } satisfies ChartConfig;
 
   return (
-    <CardLayout
-      variant={"bottom"}
-      className="h-full w-full max-xl:max-w-[500px]"
-    >
-      <CardHeader className="px-4 xl:px-5 2xl:px-6 3xl:px-7">
+    <CardLayout variant={"bottom"}>
+      <CardHeader>
         <CardTitle>Customer Satisfaction</CardTitle>
       </CardHeader>
 
-      <CardContent className="mt-3 flex justify-center px-4 pb-2 xl:mt-4 xl:px-5 xl:pb-[18px] 2xl:mt-5 2xl:px-6 2xl:pb-[22px] 3xl:mt-[25px] 3xl:px-7 3xl:pb-7">
+      <CardContent className="flex flex-col items-center px-4 pb-0 xl:px-5 2xl:px-6 3xl:px-7">
         <ChartContainer
-          className="3xl:h-[255px] 3xl:w-[364px]"
+          className="flex w-full lg:h-[210px] 2xl:h-[250px] 2xl:w-[350px] 3xl:h-[255px] 3xl:w-[350px]"
           config={chartConfig}
         >
           <AreaChart
             accessibilityLayer
-            data={chartData}
+            data={chartDataCustomer}
             margin={{
-              left: 0,
-              right: 0,
+              left: 7,
+              right: 7,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -83,35 +72,17 @@ const CustomerSatisfaction = () => {
               stroke="#07E098"
               stackId="a"
             />
-            <ChartLegend
-              className="pt-3 xl:pt-4 2xl:pt-5 3xl:pt-6"
-              content={<CustomChartLegend />}
-            />
+            <Legend />
           </AreaChart>
         </ChartContainer>
+
+        <CardFooter className="flex w-full items-center justify-center gap-x-12 text-xs text-foreground lg:pb-0">
+          <p>$3000</p>
+          <p>$4000</p>
+        </CardFooter>
       </CardContent>
     </CardLayout>
   );
 };
 
 export default CustomerSatisfaction;
-
-const CustomChartLegend = (props: any) => {
-  const { payload } = props;
-
-  return (
-    <div className="flex justify-center space-x-4">
-      {payload.map((entry: any, index: number) => (
-        <div key={`legend-${index}`} className="flex items-center space-x-2">
-          {/* Custom Legend Icon */}
-          <div
-            className="h-4 w-4 rounded"
-            style={{ backgroundColor: entry.color }}
-          ></div>
-          {/* Legend Label */}
-          <span className="text-sm">{entry.value}</span>
-        </div>
-      ))}
-    </div>
-  );
-};
